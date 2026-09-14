@@ -71,6 +71,9 @@
       width: 100%;
       margin: auto 0;
       animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .logo-img {
       width: 96px;
@@ -109,6 +112,22 @@
       color: #8b9095;
       line-height: 1.6;
       font-weight: 400;
+      margin-bottom: 28px;
+    }
+
+    /* Google Play Resmi Rozeti Stili (100px) */
+    .play-badge-link {
+      display: inline-block;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s;
+    }
+    .play-badge-link:hover {
+      transform: translateY(-3px) scale(1.03);
+      opacity: 0.95;
+    }
+    .play-badge-img {
+      height: 100px;
+      width: auto;
+      display: block;
     }
 
     footer {
@@ -347,6 +366,14 @@
     <p class="desc" id="studio-desc">
       Mobile applications and games development.
     </p>
+
+    <!-- Resmi Google Play Rozeti (100px) -->
+    <a href="https://play.google.com/store/apps/developer?id=Tomume+Studio" target="_blank" rel="noopener" class="play-badge-link">
+      <img id="play-badge-img"
+           class="play-badge-img"
+           src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" 
+           alt="Get it on Google Play">
+    </a>
   </main>
 
   <footer>
@@ -391,6 +418,8 @@
     const langData = {
       en: {
         desc: "Mobile applications and games development.",
+        badgeSrc: "https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png",
+        badgeAlt: "Get it on Google Play",
         footerAbout: "About Us",
         footerPolicy: "Privacy Policy",
         footerSupport: "Contact Support",
@@ -451,6 +480,8 @@
       },
       tr: {
         desc: "Mobil uygulama ve oyun geliştirme stüdyosu.",
+        badgeSrc: "https://play.google.com/intl/tr_tr/badges/static/images/badges/tr_badge_web_generic.png",
+        badgeAlt: "Google Play'den Edinin",
         footerAbout: "Hakkımızda",
         footerPolicy: "Gizlilik Politikası",
         footerSupport: "İletişim & Destek",
@@ -558,6 +589,13 @@
     function changeLang(lang) {
       currentLang = lang;
       document.getElementById('studio-desc').textContent = langData[lang].desc;
+      
+      const badgeImg = document.getElementById('play-badge-img');
+      if (badgeImg) {
+        badgeImg.src = langData[lang].badgeSrc;
+        badgeImg.alt = langData[lang].badgeAlt;
+      }
+
       document.getElementById('footer-about-link').textContent = langData[lang].footerAbout;
       document.getElementById('footer-policy-link').textContent = langData[lang].footerPolicy;
       document.getElementById('footer-contact-link').textContent = langData[lang].footerSupport;
